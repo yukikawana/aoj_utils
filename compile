@@ -1,0 +1,10 @@
+if [ -z ${1+x} ];
+then arg=$(ls -lt *.cpp | cut -d " " -f10 | head -1)
+else arg=$1
+fi
+
+echo "compile and exec: $arg"
+out="$(cut -d'.' -f1 <<<"$arg")"
+g++ -o $out $arg -std=c++11
+echo "compile done. now exec."
+./$out
